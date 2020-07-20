@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1595279701 source:g:\c++\library on linked list\main.cpp
+	<iostream>
+	<conio.h>
+	<string.h>
+	"header.h"
+
+1595281807 g:\c++\library on linked list\header.h
+
