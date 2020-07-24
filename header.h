@@ -53,6 +53,7 @@ void regis_user()
         baru->prev=back;
         back=baru;
     }
+    system("pause");
 }
 
 //method untuk melihat pengguna yang sudah terdaftar
@@ -64,7 +65,7 @@ void read_user()
         cout << "\nNama = " << helper_a->nama;
         helper_a=helper_a->next;
     }
-
+    system("pause");
 }
 
 

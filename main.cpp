@@ -16,19 +16,20 @@ int main()
         system("cls");
         cout << "1. DAFTAR USER BARU"<< endl;
         cout << "2. LIHAT USER TERDAFTAR" << endl;
-        cout << "masukkan pilihan";
+        cout << "masukkan pilihan = ";
         cin>> pil;
         switch(pil)
         {
         case 1:
             regis_user();
             break;
-            system("pause");
         case 2:
             read_user();
+            cin.get();
             break;
-            system("pause");
+        default :
+            cout << "Wrong input" << endl;
         }
-    }while(pil<=3);
+    }while(pil<3);
     return 0;
 }
