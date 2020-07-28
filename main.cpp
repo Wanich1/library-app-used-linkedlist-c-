@@ -1,5 +1,7 @@
 #include <iostream>
 #include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "header.h"
 
@@ -10,12 +12,14 @@ void regis_user();
 //method utama untuk memanggil method lain yang  akan dikerjakan
 int main()
 {
+    hardcode_book();
     int pil;
     do
     {
         system("cls");
         cout << "1. DAFTAR USER BARU"<< endl;
         cout << "2. LIHAT USER TERDAFTAR" << endl;
+        cout << "3. LIHAT BUKU" << endl;
         cout << "masukkan pilihan = ";
         cin>> pil;
         switch(pil)
@@ -26,6 +30,9 @@ int main()
         case 2:
             read_user();
             cin.get();
+            break;
+        case 3:
+            read_buku();
             break;
         default :
             cout << "Wrong input" << endl;
