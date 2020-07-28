@@ -129,7 +129,11 @@ void read_buku()
     help=depan_b;
     while(help!=NULL)
     {
-        cout << "\nNama = " << help->judul;
+        cout << "\nISBN= " << help->isbn;
+        cout << "\nJudul buku = " << help->judul;
+        cout << "\nKategori = " << help->kategori;
+        cout << "\nGenre = " << help->genre;
+        cout << endl;
         help=help->next;
     }
     cout << endl;
