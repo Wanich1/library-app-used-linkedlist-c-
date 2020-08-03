@@ -124,6 +124,51 @@ void hardcode_book()
     //hardcode buku 2
 }
 
+void tambah_buku()
+{
+    buku *baru;
+    baru = new buku;
+    bool input=true;
+    do
+    {
+        cout << "Masukkan ISBN = ";
+        cin >> baru->isbn;
+        help=depan_b;
+        while(help!=NULL)
+        {
+            if(baru->isbn==help->isbn)
+            {
+                cout << "ISBN sudah ada"<<endl;
+                input=true;
+                break;
+            }
+            else
+            {
+                cout << "ISBN sesuai"<<endl;
+                input=false;
+            }
+            help=help->next;
+        }
+
+    }while(input);
+    cin.sync();
+    cout << "Masukkan Judul = ";
+    cin.getline(baru->judul,50);
+    cout << "Masukkan Kategori = ";
+    cin.getline(baru->kategori,50);
+    cout << "Masukkan Genre = ";
+    cin.getline(baru->genre,50);
+    baru->status=true;
+
+    baru->next=baru->prev=NULL;
+    belakang_b->next=baru;
+    baru->prev=belakang_b;
+    belakang_b=baru;
+
+    cout << "\n\nBerhasil tambah buku";
+    system("pause");
+}
+
 void read_buku()
 {
     help=depan_b;

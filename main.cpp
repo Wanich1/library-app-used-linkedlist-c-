@@ -20,6 +20,7 @@ int main()
         cout << "1. DAFTAR USER BARU"<< endl;
         cout << "2. LIHAT USER TERDAFTAR" << endl;
         cout << "3. LIHAT BUKU" << endl;
+        cout << "4. TAMBAH BUKU" << endl;
         cout << "masukkan pilihan = ";
         cin>> pil;
         switch(pil)
@@ -34,9 +35,12 @@ int main()
         case 3:
             read_buku();
             break;
+        case 4:
+            tambah_buku();
+            break;
         default :
             cout << "Wrong input" << endl;
         }
-    }while(pil<3);
+    }while(pil<5);
     return 0;
 }
