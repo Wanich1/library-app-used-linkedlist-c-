@@ -1,5 +1,5 @@
 #include <iostream>
-#include <conio.h>
+//#include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -189,36 +189,137 @@ void read_buku()
     system("pause");
 }
 
+void cari_buku()
+{
+    int cari;
+    bool found=false;
+    do{
+        cout << "CARI BERDASAR?" << endl;
+        cout << "1. TITTLE" << endl;
+        cout << "2. KATEGORI" << endl;
+        cout << "3. GENRE" << endl;
+        cout << "4. AVAILABILITY" << endl;
+        cin >> cari;
+        if(cari==1)
+        {
+            cin.sync();
+            char judul_cari[50];
+            cout << "Masukkan judul = ";
+            cin.getline(judul_cari,50);
+            strupr(judul_cari);
+            cout<< judul_cari;
+            help=depan_b;
+            while(help!=NULL)
+            {
+                char helper[50];
+                strcpy(helper,help->judul);
+                strupr(helper);
+                if (strcmp(helper,judul_cari))
+                {
+                    cout << "\nISBN= " << help->isbn << endl;
+                    cout << "\nJudul buku = " << help->judul << endl;
+                    cout << "\nKategori = " << help->kategori << endl;
+                    cout << "\nGenre = " << help->genre << endl;
+                    found=true;
+                }
+                cout << endl;
+                help=help->next;
+            }
+        }
+        if (found!=true)
+        {
+            cout << "Buku tidak ada";
+        }
+        cout << endl;
+    }while(cari<5);
+}
+
 
 //method utama untuk memanggil method lain yang  akan dikerjakan
 int main()
 {
     hardcode_book();
     int pil;
+    int sub;
     do
     {
         system("cls");
-        cout << "1. DAFTAR USER BARU"<< endl;
-        cout << "2. LIHAT USER TERDAFTAR" << endl;
-        cout << "3. LIHAT BUKU" << endl;
-        cout << "4. TAMBAH BUKU" << endl;
+        cout << "1. MENU BUKU"<< endl;
+        cout << "2. MENU USER" << endl;
+        cout << "3. EXIT" << endl;
         cout << "masukkan pilihan = ";
         cin>> pil;
         switch(pil)
         {
         case 1:
-            regis_user();
-            break;
+            do{
+                cout << "1. LIHAT BUKU" << endl;
+                cout << "2. TAMBAH BUKU" << endl;
+                cout << "3. CARI BUKU" << endl;
+                cout << "4. UPDATE BUKU" << endl;
+                cout << "5. BACK" << endl;
+                cin >> sub;
+                if(sub==1)
+                {
+                    read_buku();
+
+                }
+                else if(sub==2)
+                {
+                    tambah_buku();
+
+                }
+                else if(sub==3)
+                {
+                    cari_buku();
+                }
+                else if(sub==4)
+                {
+                    break;
+                }
+                else
+                {
+                    cout << "input salah";
+
+                }
+            }while(sub<=4);
         case 2:
-            read_user();
-            cin.get();
-            break;
-        case 3:
-            read_buku();
-            break;
-        case 4:
-            tambah_buku();
-            break;
+            do{
+                cout << "1. REGIS PATRON" << endl;
+                cout << "2. SEARCH PATRON" << endl;
+                cout << "3. VIEW PATRON WITH ACTIVE  BOOKS BORROWED" << endl;
+                cout << "4. DISPLAY LAST 10 BOOKS BORROWED BY PATRON" << endl;
+                cout << "5. UPFATE PATRON INFO" << endl;
+                cout << "6. BACK" << endl;
+                cin >> sub;
+                if(sub==1)
+                {
+                    regis_user();
+
+                }
+                else if(sub==2)
+                {
+                    read_user();
+
+                }
+                else if(sub==3)
+                {
+                    break;
+                }
+                else if(sub==4)
+                {
+                    break;
+                }
+                else if(sub==5)
+                {
+
+                }
+                else
+                {
+                    cout << "input salah";
+
+                }
+            }while(sub<=5);
         default :
             cout << "Wrong input" << endl;
         }
