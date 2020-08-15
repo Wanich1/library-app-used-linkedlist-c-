@@ -93,10 +93,10 @@ void hardcode_book()
     buku *baru;
     baru = new buku;
     char judul1[50]="Harry potter";
-    char kategori1[50]="fictioin";
+    char kategori1[50]="fiction";
     char genre1[50]="fantasy";
     char judul2[50]="Harry potter2";
-    char kategori2[50]="fictioin";
+    char kategori2[50]="fiction";
     char genre2[50]="fantasy";
     //hardcode buku1
     cin.sync();
@@ -207,33 +207,157 @@ void cari_buku()
             cout << "Masukkan judul = ";
             cin.getline(judul_cari,50);
             strupr(judul_cari);
-            cout<< judul_cari;
             help=depan_b;
             while(help!=NULL)
             {
                 char helper[50];
                 strcpy(helper,help->judul);
                 strupr(helper);
-                if (strcmp(helper,judul_cari))
+                if (strcmp(judul_cari,helper)==0)
                 {
+                    cout << judul_cari;
                     cout << "\nISBN= " << help->isbn << endl;
-                    cout << "\nJudul buku = " << help->judul << endl;
-                    cout << "\nKategori = " << help->kategori << endl;
-                    cout << "\nGenre = " << help->genre << endl;
+                    cout << "Judul buku = " << help->judul << endl;
+                    cout << "Kategori = " << help->kategori << endl;
+                    cout << "Genre = " << help->genre << endl;
                     found=true;
                 }
                 cout << endl;
                 help=help->next;
             }
+            if (found!=true)
+            {
+                cout << "Buku tidak ada" << endl;
+            }
         }
-        if (found!=true)
+        else if(cari==2)
         {
-            cout << "Buku tidak ada";
+            cin.sync();
+            char kategori_cari[50];
+            cout << "Masukkan kategori = ";
+            cin.getline(kategori_cari,50);
+            strupr(kategori_cari);
+            help=depan_b;
+            while(help!=NULL)
+            {
+                char helper[50];
+                strcpy(helper,help->kategori);
+                strupr(helper);
+                if (strcmp(helper,kategori_cari)==0)
+                {
+                    cout << "\nISBN= " << help->isbn << endl;
+                    cout << "Judul buku = " << help->judul << endl;
+                    cout << "Kategori = " << help->kategori << endl;
+                    cout << "Genre = " << help->genre << endl;
+                    found=true;
+                }
+                cout << endl;
+                help=help->next;
+            }
+            if (found!=true)
+            {
+                cout << "Buku tidak ada";
+            }
+        }
+        else if(cari==3)
+        {
+            cin.sync();
+            char genre_cari[50];
+            cout << "Masukkan kategori = ";
+            cin.getline(genre_cari,50);
+            strupr(genre_cari);
+            help=depan_b;
+            while(help!=NULL)
+            {
+                char helper[50];
+                strcpy(helper,help->genre);
+                strupr(helper);
+                if (strcmp(helper,genre_cari)==0)
+                {
+                    cout << "\nISBN= " << help->isbn << endl;
+                    cout << "Judul buku = " << help->judul << endl;
+                    cout << "Kategori = " << help->kategori << endl;
+                    cout << "Genre = " << help->genre << endl;
+                    found=true;
+                }
+                cout << endl;
+                help=help->next;
+            }
+            if (found!=true)
+            {
+                cout << "Buku tidak ada";
+            }
         }
         cout << endl;
     }while(cari<5);
 }
 
+void update_buku()
+{
+    int isbn_baru;
+    bool found=false;
+    char quest;
+    int update_menu;
+    do{
+        int cari_isbn;
+        cout << "MASUKKAN ISBN BUKU = ";
+        cin >> cari_isbn;
+        help=depan_b;
+        while(found==false)
+        {
+            if (cari_isbn==help->isbn)
+            {
+                cout << "\nISBN= " << help->isbn << endl;
+                cout << "Judul buku = " << help->judul << endl;
+                cout << "Kategori = " << help->kategori << endl;
+                cout << "Genre = " << help->genre << endl;
+                found=true;
+            }
+            else
+            {
+                help=help->next;
+            }
+        }
+        cout << "Update buku ini?(y/n)";
+        cin >> quest;
+        if (quest=='y'||quest=='Y')
+        {
+            cout << "1. Update ISBN"<< endl;
+            cout << "2. Update Judul"<< endl;
+            cout << "3. Update Kategori"<< endl;
+            cout << "4. Update Genre"<< endl;
+            cout << "Apa yang mau di update?";
+            cin >> update_menu;
+            if (update_menu==1)
+            {
+                bool input;
+                do
+                {
+                    cout << "Masukkan ISBN baru = ";
+                    cin >> isbn_baru;
+                    help_b=depan_b;
+                    cout << help->isbn;
+                    while(help_b!=NULL)
+                    {
+                        if(isbn_baru=help_b->isbn)
+                        {
+                            cout << help_b->isbn;
+                            cout << "ISBN sudah ada"<<endl;
+                            input=true;
+                            help_b=help_b->next;
+                        }
+                        else
+                        {
+                            input=false;
+                            help->isbn=isbn_baru;
+                        }
+                    }
+                }while(input);
+                cout << "Isbn Updated" << endl;
+            }
+        }
+    }while(quest!='y');
+}
 
 //method utama untuk memanggil method lain yang  akan dikerjakan
 int main()
@@ -275,7 +399,7 @@ int main()
                 }
                 else if(sub==4)
                 {
-                    break;
+                    update_buku();
                 }
                 else
                 {
@@ -283,6 +407,7 @@ int main()
 
                 }
             }while(sub<=4);
+            break;
         case 2:
             do{
                 cout << "1. REGIS PATRON" << endl;
@@ -323,6 +448,6 @@ int main()
         default :
             cout << "Wrong input" << endl;
         }
-    }while(pil<5);
+    }while(pil<3);
     return 0;
 }
